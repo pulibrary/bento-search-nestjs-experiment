@@ -9,9 +9,9 @@ import { SearchModule } from './search/search.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [configuration]
+      load: [configuration],
     }),
-    SearchModule
+    SearchModule,
   ],
   controllers: [AppController],
   providers: [AppService],

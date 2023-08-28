@@ -1,7 +1,7 @@
-import { Type } from "class-transformer";
-import { Attributes } from "./attributes.dto";
-import { Format } from "./format.dto";
-import { SearchResultLinks } from "./searchResultLinks.dto";
+import { Type } from 'class-transformer';
+import { Attributes } from './attributes.dto';
+import { Format } from './format.dto';
+import { SearchResultLinks } from './searchResultLinks.dto';
 
 export class SearchResult {
   id: number;

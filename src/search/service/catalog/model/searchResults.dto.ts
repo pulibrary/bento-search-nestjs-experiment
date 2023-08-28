@@ -1,7 +1,7 @@
-import { Type } from "class-transformer";
-import { Links } from "./links.dto";
-import { Meta } from "./meta.dto";
-import { SearchResult } from "./searchResult.dto";
+import { Type } from 'class-transformer';
+import { Links } from './links.dto';
+import { Meta } from './meta.dto';
+import { SearchResult } from './searchResult.dto';
 
 export class SearchResults {
   @Type(() => Links)

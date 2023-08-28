@@ -9,22 +9,22 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(
     new ValidationPipe({
-      transform: true
-    })
+      transform: true,
+    }),
   );
   // Helmet hardens against header-related vulnerabilities
   app.use(helmet);
   // csurf protects against CSRF attacks
   app.use(csurf());
 
-    const config = new DocumentBuilder()
-      .setTitle('NestJS Bento Search Experiment')
-      .setDescription('The experimental bento search API')
-      .setVersion('1.0')
-      .build();
+  const config = new DocumentBuilder()
+    .setTitle('NestJS Bento Search Experiment')
+    .setDescription('The experimental bento search API')
+    .setVersion('1.0')
+    .build();
 
-    const document = SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup('api', app, document);
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
 
   await app.listen(3000);
 }

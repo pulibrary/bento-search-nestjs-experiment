@@ -1,6 +1,6 @@
-import { Type } from "class-transformer";
-import { AuthorDisplay } from "./authorDisplay.dto";
-import { PubCreatedDisplay } from "./pubCreatedDisplay.dto";
+import { Type } from 'class-transformer';
+import { AuthorDisplay } from './authorDisplay.dto';
+import { PubCreatedDisplay } from './pubCreatedDisplay.dto';
 
 export class Attributes {
   title: string;

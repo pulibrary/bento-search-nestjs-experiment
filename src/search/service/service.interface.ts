@@ -1,6 +1,6 @@
-import { Observable } from "rxjs";
-import { SearchResponse } from "../model/searchResponse.dto";
+import { Observable } from 'rxjs';
+import { SearchResponse } from '../model/searchResponse.dto';
 
 export interface SearchService {
-  getSearchResults(searchString: string): Observable<SearchResponse>
+  getSearchResults(searchString: string): Observable<SearchResponse>;
 }
