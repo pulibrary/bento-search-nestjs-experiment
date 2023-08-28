@@ -14,8 +14,7 @@ export class CatalogSearchService implements SearchService {
   constructor(private readonly httpService: HttpService) {}
 
   getSearchResults(searchString: string): Observable<SearchResponse> {
-    var res =  this.fetchSearchResults(searchString);
-    return res.pipe(
+    return this.fetchSearchResults(searchString).pipe(
       map(rs => plainToInstance(SearchResults, rs.data)),
       map(results => {
         var items = results.data.slice(0, 3).map(function(item) {
