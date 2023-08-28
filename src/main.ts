@@ -1,6 +1,8 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import * as csurf from 'csurf';
+import helmet from 'helmet';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -9,7 +11,11 @@ async function bootstrap() {
     new ValidationPipe({
       transform: true
     })
-  )
+  );
+  // Helmet hardens against header-related vulnerabilities
+  app.use(helmet);
+  // csurf protects against CSRF attacks
+  app.use(csurf());
 
     const config = new DocumentBuilder()
       .setTitle('NestJS Bento Search Experiment')
