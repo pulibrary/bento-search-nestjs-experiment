@@ -1,17 +1,20 @@
 import { HttpService } from "@nestjs/axios";
 import { Injectable, Logger } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 import { AxiosResponse } from "axios";
 import { plainToInstance } from "class-transformer";
 import { map, Observable } from "rxjs";
-import { config } from "src/app.config";
-import { SearchItem } from "src/search/model/searchItem.dto";
-import { SearchResponse } from "src/search/model/searchResponse.dto";
-import { SearchResults } from "src/search/service/catalog/model/searchResults.dto";
+import { SearchItem } from "../../../search/model/searchItem.dto";
+import { SearchResponse } from "../../../search/model/searchResponse.dto";
+import { SearchResults } from "../../../search/service/catalog/model/searchResults.dto";
 import { SearchService } from "../service.interface";
 
 @Injectable()
 export class CatalogSearchService implements SearchService {
-  constructor(private readonly httpService: HttpService) {}
+  constructor(
+    private readonly configService: ConfigService,
+    private readonly httpService: HttpService
+    ) {}
 
   getSearchResults(searchString: string): Observable<SearchResponse> {
     return this.fetchSearchResults(searchString).pipe(
@@ -33,6 +36,6 @@ export class CatalogSearchService implements SearchService {
   }
 
   fetchSearchResults(searchString: string): Observable<AxiosResponse<SearchResults>> {
-    return this.httpService.get(`${config.catalogUrl}?search_field=all_fields&q=${searchString}`)
+    return this.httpService.get(`${this.configService.get('catalogUrl')}?search_field=all_fields&q=${searchString}`)
   }
 }

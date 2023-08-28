@@ -1,3 +1,3 @@
-export const config = {
+export default () => ({
   catalogUrl: 'https://catalog.princeton.edu/catalog.json',
-}
+});
