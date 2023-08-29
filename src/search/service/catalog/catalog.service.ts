@@ -51,9 +51,8 @@ export class CatalogSearchService extends SearchService {
     searchString: string,
   ): Observable<AxiosResponse<SearchResults>> {
     return this.httpService.get(
-      `${this.configService.get(
-        'catalogUrl',
-      )}?search_field=all_fields&q=${searchString}`,
+      // eslint-disable-next-line
+      `${this.configService.get('catalogUrl')}?search_field=all_fields&q=${searchString}`
     );
   }
 }

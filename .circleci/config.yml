@@ -2,15 +2,17 @@ version: 2.1
 orbs:
   node: circleci/node@5.0.2
 jobs:
-  build-and-test:
+  build-and-test-coverage:
     executor:
       name: node/default
     steps:
       - checkout
       - node/install-packages
       - run:
-          command: npm run test
+          command: npm run test:cov:report
+      - store_artifacts:
+        path: coverage
 workflows:
-  build-and-test:
+  build-and-test-coverage:
     jobs:
-      - build-and-test
+      - build-and-test-coverage
