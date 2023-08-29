@@ -7,20 +7,22 @@ import { map, Observable } from 'rxjs';
 import { SearchItem } from '../../../search/model/searchItem.dto';
 import { SearchResponse } from '../../../search/model/searchResponse.dto';
 import { SearchResults } from '../../../search/service/catalog/model/searchResults.dto';
-import { SearchService } from '../service.interface';
+import { SearchService } from '../service.service';
 
 @Injectable()
-export class CatalogSearchService implements SearchService {
+export class CatalogSearchService extends SearchService {
   constructor(
     private readonly configService: ConfigService,
     private readonly httpService: HttpService,
-  ) {}
+  ) {
+    super();
+  }
 
   getSearchResults(searchString: string): Observable<SearchResponse> {
     return this.fetchSearchResults(searchString).pipe(
       map((rs) => plainToInstance(SearchResults, rs.data)),
       map((results) => {
-        const items = results.data.slice(0, 3).map(function (item) {
+        const items = results.data.slice(0, 3).map((item) => {
           const creator =
             item.attributes.author_display === undefined
               ? null
@@ -35,7 +37,7 @@ export class CatalogSearchService implements SearchService {
             description,
             item.links.self,
           );
-        }, results);
+        });
         return new SearchResponse(
           results.links.self,
           results.meta.pages.total_count,

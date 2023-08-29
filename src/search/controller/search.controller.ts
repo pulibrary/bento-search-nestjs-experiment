@@ -1,20 +1,13 @@
-import {
-  Controller,
-  Get,
-  HttpException,
-  HttpStatus,
-  Param,
-  Query,
-} from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Observable } from 'rxjs';
+import { SearchServiceFactory } from '../factory/searchService.factory';
 import { SearchResponse } from '../model/searchResponse.dto';
-import { CatalogSearchService } from '../service/catalog/catalog.service';
 
 @ApiTags('search')
 @Controller('search')
 export class SearchController {
-  constructor(private readonly catalogSearchService: CatalogSearchService) {}
+  constructor(private readonly searchServiceFactory: SearchServiceFactory) {}
 
   @Get(':service')
   @ApiOperation({ summary: 'Get search results for service' })
@@ -28,14 +21,8 @@ export class SearchController {
     @Query('search') search: string,
     @Param('service') service: string,
   ): Observable<SearchResponse> {
-    switch (service) {
-      case 'catalog':
-        return this.catalogSearchService.getSearchResults(search);
-      default:
-        throw new HttpException(
-          `The requested service ${service} is not a valid service`,
-          HttpStatus.BAD_REQUEST,
-        );
-    }
+    return this.searchServiceFactory
+      .getSearchService(service)
+      .getSearchResults(search);
   }
 }

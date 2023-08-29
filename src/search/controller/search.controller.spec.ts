@@ -2,6 +2,7 @@ import { HttpModule } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
 import { Test } from '@nestjs/testing';
 import { lastValueFrom, of } from 'rxjs';
+import { SearchServiceFactory } from '../factory/searchService.factory';
 import { SearchItem } from '../model/searchItem.dto';
 import { SearchResponse } from '../model/searchResponse.dto';
 import { CatalogSearchService } from '../service/catalog/catalog.service';
@@ -15,7 +16,7 @@ describe('SearchController', () => {
     const moduleRef = await Test.createTestingModule({
       controllers: [SearchController],
       imports: [HttpModule],
-      providers: [CatalogSearchService, ConfigService],
+      providers: [CatalogSearchService, ConfigService, SearchServiceFactory],
     }).compile();
 
     catalogSearchService =
