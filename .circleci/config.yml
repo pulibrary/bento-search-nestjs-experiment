@@ -11,7 +11,7 @@ jobs:
       - run:
           command: npm run test:cov:report
       - store_artifacts:
-        path: coverage
+        path: /coverage
 workflows:
   build-and-test-coverage:
     jobs:
