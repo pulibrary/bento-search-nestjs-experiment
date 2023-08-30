@@ -1,5 +1,7 @@
 export class Links {
   self: string;
-  next: string;
-  last: string;
+
+  constructor(self: string) {
+    this.self = self;
+  }
 }

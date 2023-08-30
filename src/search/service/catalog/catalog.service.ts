@@ -25,11 +25,11 @@ export class CatalogSearchService extends SearchService {
         const items = results.data.slice(0, 3).map((item) => {
           const creator =
             item.attributes.author_display === undefined
-              ? null
+              ? ''
               : item.attributes.author_display.attributes.value[0];
           const description =
             item.attributes.pub_created_display === undefined
-              ? null
+              ? ''
               : item.attributes.pub_created_display.attributes.value[0];
           return new SearchItem(
             item.attributes.title,
