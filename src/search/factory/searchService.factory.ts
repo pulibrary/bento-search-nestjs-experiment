@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CatalogSearchService } from '../service/catalog/catalog.service';
-import { SearchService } from '../service/service.service';
+import { SearchService } from '../service/search.service';
 
 @Injectable()
 export class SearchServiceFactory {

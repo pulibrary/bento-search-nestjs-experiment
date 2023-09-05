@@ -7,7 +7,7 @@ import { map, Observable } from 'rxjs';
 import { SearchItem } from '../../../search/model/searchItem.dto';
 import { SearchResponse } from '../../../search/model/searchResponse.dto';
 import { SearchResults } from '../../../search/service/catalog/model/searchResults.dto';
-import { SearchService } from '../service.service';
+import { SearchService } from '../search.service';
 
 @Injectable()
 export class CatalogSearchService extends SearchService {
